@@ -2,12 +2,18 @@
 A simple UI for viewing trade information on the Poloniex exchange.
 
 ### Getting started
+
 ```
 $ git clone 
 $ cd poloniex-ui
 $ make start
 ```
 This will install dependencies, build Poloniex UI, and start a server. Navigate to localhost:8080 to view the UI.
+
+NOTE: Poloniex UI uses Yarn to resolve dependencies. Install Yarn:
+```
+$ npm install -g yarn
+```
 
 For development mode, run
 
