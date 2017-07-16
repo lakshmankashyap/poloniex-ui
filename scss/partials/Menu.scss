@@ -1,0 +1,92 @@
+.Menu {
+    width: 90%;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: #2E2A51;
+    position: fixed;
+    transition: top 0.3s, opacity 0.3s;
+
+    @media screen and (min-width: 968px) {
+        width: 570px;
+        margin: 0;
+    }
+
+    .Arrow {
+        transform: rotate(45deg);
+        width: 14px;
+        height: 14px;
+        background-color: #FFFFFF;
+        position: absolute;
+        top: -7px;
+        left: calc((100% - 14px)/2);
+        border-top: 1px solid #cfd1d2;
+        border-left: 1px solid #cfd1d2;
+    }
+
+    .Inside {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        top: 0px;
+        padding: 14px;
+        position: relative;
+
+        .MenuItem {
+            flex: 1;
+            padding: 5px 7px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #F4F4F6;
+            }
+
+            &:last-of-type {
+                margin: 0px;
+            }
+
+            span {
+                color: $teal;
+                font-size: 0.875rem;
+                font-weight: 500;
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.8125rem;
+                font-weight: 300;
+                color: #2E2A51;
+            }
+        }
+
+        .Product {
+            flex: 1 0 45%;
+            padding: 2% 3.5%;
+            transition: background-color 0.2s;
+
+            @media screen and (min-width: 968px) {
+                padding: 2% 2.5%;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: #F4F4F6;
+            }
+
+            img {
+                width: auto;
+                height: 35px;
+            }
+
+            p {
+                font-size: 0.875rem;
+                font-weight: 300;
+                color: #2E2A51;
+                margin: 0;
+            }
+        }
+    }
+}

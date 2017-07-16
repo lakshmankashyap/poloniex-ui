@@ -1,0 +1,48 @@
+.CommandContainer {
+    margin-top: 2rem;
+
+    .Pull.Dark {
+        color: $black;
+    }
+
+    .Pull {
+        color: lightgrey;
+        margin-bottom: 7px;
+        font-size: 1.0625rem;
+        font-weight: 300;
+    }
+
+    .Commands {
+        background-color: $light-grey;
+        display: flex;
+        flex-direction: row;
+        padding: 0 10px;
+        height: 35px;
+        align-items: center;
+        border-radius: 3px;
+        font-family: 'Courier New';
+        font-size: 0.875rem;
+    }
+
+    .Copy.Complete {
+        color: $green;
+    }
+
+    .Copy {
+        color: $light-blue;
+        margin-left: auto;
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-size: 0.70rem;
+        position: relative;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:active {
+            color: darken($light-blue, 5%);
+            top: 1px;
+        }
+    }
+}

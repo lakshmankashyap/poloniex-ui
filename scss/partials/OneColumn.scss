@@ -1,0 +1,42 @@
+.OneColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 3rem 0 0;
+
+    .TextContent {
+        margin-bottom: 1rem;
+
+        &.Center {
+            h3 {
+                text-align: center;
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+
+        h3 {
+            color: $nothing-green;
+            margin: 0;
+            font-size: 1.4625rem;
+            font-weight: 300;
+        }
+
+        p {
+            color: $lightText;
+            font-size: 1.0625rem;
+            margin: 0;
+        }
+    }
+
+    .ImageContent {
+        flex: 1;
+        position: relative;
+
+        img {
+            width: 100%;
+        }
+    }
+}

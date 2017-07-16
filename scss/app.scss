@@ -1,0 +1,48 @@
+$coverSlideTransition: all 0 linear;
+
+// Fonts
+// @import "vendor/css/open-sans.css";
+
+// Global Colors
+@import "global/colors.scss";
+
+// Layout
+@import "pages/Layout";
+@import "pages/Home";
+@import "pages/About";
+
+
+// Partials
+@import "partials/Btn";
+@import "partials/Book";
+@import "partials/EmailSignUp";
+@import "partials/Menu";
+@import "partials/Footer";
+@import "partials/ProductsMenu";
+@import "partials/PullCommands";
+@import "partials/OneColumn";
+@import "partials/TwoColumn";
+@import "partials/ThreeColumn";
+
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.TealColor {
+    color: $teal !important;
+}
+
+.FlexSpace {
+    flex: 0.1;
+}

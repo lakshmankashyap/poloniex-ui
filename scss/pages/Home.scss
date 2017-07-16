@@ -1,0 +1,438 @@
+.Home {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.Page {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    background-color: $bg;
+    padding-bottom: 50px;
+    padding-top: 100px;
+
+    &.Light {
+        background-color: $light-grey;
+    }
+}
+
+.CoverSlide {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: $bg;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    background-image: url(/static/images/heroimage-main-mobile.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media screen and (min-width: 968px) {
+        background-image: url(/static/images/heroimage-main.jpg);
+    }
+
+    .Content {
+        position: relative;
+        width: 100%;
+        max-width: 535px;
+        height: 40%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        color: #FFFFFF;
+        text-align: center;
+        max-width: 535px;
+
+        @media screen and (min-width: 1600px) {
+            font-size: 2.625rem;
+        }
+    }
+
+    .LargeButtonRed {
+        width: 550px;
+        max-width: 90%;
+
+        @media screen and (min-width: 1600px) {
+            width: 675px;
+        }
+    }
+
+    .HomeArrow {
+        width: 112px;
+        position: absolute;
+        bottom: 24px;
+        left: calc((100% - 112px)/2);
+    }
+}
+
+.ProductsPage {
+    @extend .Page;
+
+    min-height: 80%;
+
+    .ProductsContainer {
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (min-width: 968px) {
+            flex-direction: row;
+        }
+
+        a.ProductLink {
+            flex: 1;
+            border: 0px;
+
+            @media screen and (min-width: 968px) {
+                flex-direction: row;
+                border-right: 1px solid #585574;
+
+                &:last-of-type {
+                    border-right: 0px;
+                }
+            }
+
+            .Product {
+                padding: 14px;
+                transition: background-color 0.1s;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.05);
+                }
+
+                img {
+                    height: 45px;
+                    margin-bottom: 5px;
+                }
+
+                h4 {
+                    margin: 0 0 7px;
+                    color: $green;
+                    font-size: 1.2rem;
+                    text-align: center;
+                    font-weight: 500;
+                }
+
+                p {
+                    color: #FFFFFF;
+                    text-align: center;
+                    margin: 0px;
+                    height: 60px;
+                    font-size: 0.9375rem;
+
+                    @media screen and (min-width: 1600px) {
+                        height: 50px;
+                    }
+                }
+
+                span {
+                    font-size: 1.0625rem;
+                    font-weight: 500;
+                    color: #3B97D2;
+                    text-align: center;
+                    width: 100%;
+                    display: block;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .TrustedBy {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5rem;
+
+        img.CustomerLogos {
+            &.Desktop {
+                display: none;
+
+                @media screen and (min-width: 968px) {
+                    margin: 1rem 0;
+                    display: initial;
+                }
+            }
+
+            &.Mobile {
+                margin: 1rem 0;
+
+                @media screen and (min-width: 968px) {
+                    display: none;
+                }
+            }
+        }
+
+        .FlexRow {
+            justify-content: center;
+            align-items: center;
+
+            h2 {
+                font-size: 1.5625rem;
+                font-weight: 300;
+                color: #FFFFFF;
+                margin: 0px 35px;
+            }
+
+            span {
+                color: $salmon;
+                font-size: 1.0625rem;
+                font-weight: 500;
+                margin: 0 25px;
+            }
+
+            .Line {
+                flex: 2;
+                height: 1px;
+                background-color: #585574;
+            }
+        }
+    }
+
+    .OpenSource {
+        margin-top: 5rem;
+    }
+}
+
+.PrivacyPolicyContent, .TermsOfServiceContent, .Integrations {
+    @extend .Page;
+
+    @extend .Page.Light;
+
+    .Content {
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        h2 {
+            text-align: left;
+            color: $teal;
+        }
+    }
+}
+
+.Content {
+    position: relative;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+
+    @media screen and (min-width: 968px) {
+        width: 968px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    @media screen and (min-width: 1168px) {
+        width: 1100px;
+    }
+
+    @media screen and (min-width: 1600px) {
+        width: 1368px;
+    }
+
+    img {
+        height: auto;
+        width: 100%;
+    }
+
+    .FlexSpace {
+        flex: 0.1;
+    }
+
+    h2 {
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 1.875rem;
+        font-weight: 300;
+        margin: 0 0 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.5625rem;
+        color: #FFFFFF;
+        font-weight: 400;
+        margin: 0 0 0.5rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+        color: #FFFFFF;
+        font-weight: 400;
+        margin: 0 0 0rem;
+    }
+
+    p {
+        font-size: 1.0625rem;
+        color: $passly-blue;
+        font-weight: 300;
+        margin: 0 0 0.5rem;
+    }
+}
+
+.GetStarted {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    h2 {
+        color: $passly-blue;
+        font-size: 1.7rem;
+        margin-bottom: 2rem;
+    }
+
+    .LargeButtonRed {
+        width: 550px;
+        max-width: 100%;
+        margin: 0px;
+
+        @media screen and (min-width: 1600px) {
+            width: 675px;
+        }
+    }
+}
+
+.PasslyBtn {
+    position: relative;
+    height: 35px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    display: flex;
+    width: 190px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    border-radius: 3px;
+    background-color: $passly-red;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        top: 1px;
+        background: darken($passly-red, 5%);
+    }
+}
+
+.ScreenCover {
+    left: 0;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000000000;
+    display: flex;
+    flex-direction: column;
+
+    .CoverContainer {
+        max-width: 600px;
+        max-height: 400px;
+        position: relative;
+        margin: 0 auto;
+        background-color: #F9F9FA;
+        border-radius: 3px;
+        top: 200px;
+        padding: 14px;
+
+        @media screen and (min-width: 968px) {
+            width: 600px;
+        }
+
+        .IconContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+
+            i.icon-dis-close {
+                font-size: 1.2rem;
+                color: $grey;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.FlexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.FlexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.AlignCenter {
+    align-items: center;
+}
+
+.JustifyCenter {
+    justify-content: center;
+}
+
+.SpaceBetween {
+    justify-content: space-between;
+}
+
+.Flex1 {
+    flex: 1;
+}
+
+.Flex2 {
+    flex: 2;
+}
+
+.LargeButton {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 90%;
+    margin: 2rem auto;
+    font-size: 1.3rem;
+    border-radius: 3px;
+    color: #FFFFFF;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    @media screen and (min-width: 500px) {
+        width: 450px;
+        left: 0px;
+    }
+}
+
+.LargeButtonRed {
+    @extend .LargeButton;
+
+    background-color: $passly-red;
+
+    &:active {
+        background-color: darken($passly-red, 5%);
+        top: 1px;
+    }
+}

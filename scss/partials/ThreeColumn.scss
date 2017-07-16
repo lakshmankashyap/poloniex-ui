@@ -1,0 +1,41 @@
+.ThreeColumn {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 0 -3rem 0;
+
+    .OneColumn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 3rem 1rem 0;
+
+        .TextContent {
+            margin-bottom: 1rem;
+
+            h3 {
+                color: $nothing-green;
+                margin: 0;
+                font-size: 1.5625rem;
+                font-weight: 300;
+            }
+
+            p {
+                color: $lightText;
+                font-size: 1.0625rem;
+                margin: 0;
+            }
+        }
+
+        .ImageContent {
+            background-color: #F9F9FA;
+            flex: 1;
+            height: 100%;
+            position: relative;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

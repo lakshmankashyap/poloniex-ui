@@ -1,0 +1,106 @@
+.CTABtnContainer {
+    width: auto;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 968px) {
+        height: auto;
+        flex-direction: row;
+    }
+
+    a {
+        height: 35px;
+        max-width: 310px;
+        width: 100%;
+
+        &:nth-of-type(2n-1) {
+            margin-bottom: 10px;
+        }
+
+        @media screen and (min-width: 968px) {
+            &:nth-of-type(2n-1) {
+                margin-bottom: 0px;
+                margin-right: 5px;
+            }
+
+            &:nth-of-type(2n) {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.Btn {
+    background-color: $salmon;
+    color: #FFFFFF;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 36px;
+    max-width: 310px;
+    width: 100%;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    transition: background-color 0.3s;
+    border-radius: 3px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        margin-top: 1px;
+        background-color: darken($salmon, 5%);
+    }
+
+    i {
+        margin-right: 7px;
+        font-size: 1.4rem;
+        position: relative;
+        top: -1px;
+    }
+
+    i.icon-dis-docs {
+        font-size: 1.6rem;
+        top: 1px;
+    }
+}
+
+.Btn.Grey {
+    background-color: #AAAAAA;
+
+    &:hover {
+        cursor: inherit;
+    }
+
+    &:active {
+        background-color: #AAAAAA;
+        border-bottom: 0px;
+        top: 0px;
+    }
+}
+
+.Btn.Cancel {
+    background-color: $pink;
+}
+
+span.BtnContainer {
+    p.HelperText {
+        font-size: .755rem;
+        font-weight: 400;
+        font-style: italic;
+        color: $black;
+    }
+}
+
+.Btn.FullWidth {
+    width: 100% !important;
+}

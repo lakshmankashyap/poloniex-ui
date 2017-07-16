@@ -1,0 +1,69 @@
+.ProductsMenu {
+    width: 90%;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: #2E2A51;
+    position: fixed;
+    top: 70px;
+
+    @media screen and (min-width: 968px) {
+        width: 570px;
+        margin: 0;
+    }
+
+    @media screen and (min-width: 1168px) {
+        margin-left: 2.5%;
+    }
+
+    @media screen and (min-width: 1600px) {
+        margin-left: calc(135px + 1.5%);
+    }
+
+    .Arrow {
+        transform: rotate(45deg);
+        width: 14px;
+        height: 14px;
+        background-color: #FFFFFF;
+        position: absolute;
+        top: -8px;
+        left: calc((100% - 14px)/2);
+        border-top: 1px solid #cfd1d2;
+        border-left: 1px solid #cfd1d2;
+    }
+
+    .Inside {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        top: 0px;
+        padding: 14px;
+        position: relative;
+
+        .Product {
+            flex: 1 0 45%;
+            padding: 2% 2.5%;
+            transition: background-color 0.2s;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #F4F4F6;
+            }
+
+            img {
+                width: auto;
+                height: 35px;
+            }
+
+            p {
+                font-size: 0.875rem;
+                font-weight: 300;
+                color: #2E2A51;
+                margin: 0;
+            }
+        }
+    }
+}

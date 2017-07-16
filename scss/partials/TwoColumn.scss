@@ -1,0 +1,84 @@
+.TwoColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 3rem 0 0;
+
+    @media screen and (min-width: 968px) {
+        flex-direction: row;
+    }
+
+    &.Reverse {
+        @media screen and (min-width: 968px) {
+            flex-direction: row-reverse;
+
+            .TextContent {
+                margin: 0px;
+            }
+
+            .ImageContent {
+                margin-right: 5rem;
+            }
+        }
+    }
+
+    .TextContent {
+        margin-bottom: 1rem;
+
+        @media screen and (min-width: 968px) {
+            flex: 1;
+            margin-right: 5rem;
+        }
+
+        &.Center {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h3 {
+            color: $nothing-green;
+            margin: 0;
+            font-size: 1.4625rem;
+            font-weight: 300;
+        }
+
+        p {
+            color: $lightText;
+            font-size: 1.0625rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+    }
+
+    .ImageContent {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 65%;
+
+            @media screen and (min-width: 968px) {
+                height: auto;
+                width: 217px;
+            }
+        }
+    }
+
+    .ImageContent.Large {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media screen and (min-width: 968px) {
+            flex: 2;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+}
