@@ -54,7 +54,7 @@ class Dashboard extends Component{
               let month = d.getUTCMonth() + 1;
               let day = d.getUTCDate();
               let year = d.getUTCFullYear();
-              let hours = d.getUTCHours();
+              let hours = d.getHours();
               let mins = d.getUTCMinutes();
               let seconds = d.getUTCSeconds();
               hours = (hours.toString().length == 1 ? '0' : '') + hours;
@@ -72,7 +72,7 @@ class Dashboard extends Component{
                 <div className="Value">{trade.amount}</div>
                 <div className="Value">{trade.rate}</div> 
                 {(() => {
-                  if(i == 0) {
+                  if(i == 0 && !this.props.isMobile) {
                     return (
                       <div className="Latest">Latest</div>
                     );

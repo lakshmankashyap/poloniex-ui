@@ -17,6 +17,14 @@
     height: 100%;
     margin: 20px auto;
 
+    &.FlexRow {
+        flex-direction: column;
+
+        @media screen and (min-width: 960px) {
+            flex-direction: row;
+        }
+    }
+
     .FlexSpace {
         flex: 0.1;
     }

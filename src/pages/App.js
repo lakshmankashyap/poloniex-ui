@@ -9,7 +9,8 @@ export default class App extends Component {
     super(props);
     let isRoot = NPECheck(this.props, 'location/pathname', null) == '/';
     this.state = {
-      isRoot: isRoot
+      isRoot: isRoot,
+      isMobile: false
     };
   }
   componentDidMount() {
