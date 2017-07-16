@@ -7,7 +7,7 @@
     height: auto;
 }
 
-.Home {
+.Dashboard {
     @extend .Page;
 }
 
@@ -22,32 +22,11 @@
     }
 }
 
-.FlexColumn {
-    display: flex;
-    flex-direction: column;
-}
-
 .FlexRow {
     display: flex;
     flex-direction: row;
 }
 
-.AlignCenter {
-    align-items: center;
-}
-
-.JustifyCenter {
-    justify-content: center;
-}
-
-.SpaceBetween {
-    justify-content: space-between;
-}
-
 .Flex1 {
     flex: 1;
-}
-
-.Flex2 {
-    flex: 2;
 }

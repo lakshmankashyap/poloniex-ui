@@ -1,5 +1,5 @@
 module.exports = exports = {
- title: 'Poloniex Client',
+ title: 'Poloniex Dashboard',
   routes: [
     '/'
   ]

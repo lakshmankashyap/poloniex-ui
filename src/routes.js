@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router'
-import Layout from './pages/Layout'
-import Home from './pages/Home'
+import App from './pages/App'
+import Dashboard from './pages/Dashboard'
 
 export default (
-  <Route component={Layout}>
- 	 <Route component={Home} path="/" />
+  <Route component={App}>
+ 	 <Route component={Dashboard} path="/" />
   </Route>
 );

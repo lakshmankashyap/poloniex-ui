@@ -14,7 +14,7 @@ export default function PoloniexClientProvider(Component) {
     componentDidMount() {
       this.setState({
         liveBook: new PoloniexClient({
-          updateBook: (book) => this.updateLiveBook(book)
+          updateBook: book => this.updateLiveBook(book)
         })
       });
     }

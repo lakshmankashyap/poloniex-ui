@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PoloniexClientProvider from './../components/PoloniexClientProvider'
 
-class HomePage extends Component{
+class Dashboard extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
 			scrollSet: false
 		};
-
 	}
   componentWillReceiveProps(nextProps) {
     // Wait for book to load, set scroll position once
@@ -152,22 +151,22 @@ class HomePage extends Component{
 	render(){
 
 		return (			
-				<div className="Home">
+				<div className="Dashboard">
 					{this.renderContent()}
 				</div>
 		);
 	}
 }
 
-HomePage.propTypes = {};
+Dashboard.propTypes = {};
 
-HomePage.contextTypes = {
+Dashboard.contextTypes = {
 	actions: PropTypes.object
 };
 
-HomePage.childContextTypes = {
+Dashboard.childContextTypes = {
 	actions: PropTypes.object
 };
 
-export default PoloniexClientProvider(HomePage);
+export default PoloniexClientProvider(Dashboard);
 
