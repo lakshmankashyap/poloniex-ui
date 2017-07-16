@@ -50,20 +50,20 @@ class Dashboard extends Component{
 			<div className="TradeHistory">
 				  {[...tradeHistory].map((trade, i) => {
             let isBuy = trade.type == 'buy';
-            let getDate = d => {
-              let month = d.getUTCMonth() + 1;
-              let day = d.getUTCDate();
-              let year = d.getUTCFullYear();
-              let hours = d.getHours();
-              let mins = d.getUTCMinutes();
-              let seconds = d.getUTCSeconds();
-              hours = (hours.toString().length == 1 ? '0' : '') + hours;
-              mins = (mins.toString().length == 1 ? '0' : '') + mins;
-              seconds = (seconds.toString().length == 1 ? '0' : '') + seconds;
-              return `${month}/${day}/${year} ${hours}:${mins}:${seconds}`;
-            };
+            // let getDate = d => {
+            //   let month = d.getUTCMonth() + 1;
+            //   let day = d.getUTCDate();
+            //   let year = d.getUTCFullYear();
+            //   let hours = d.getHours();
+            //   let mins = d.getUTCMinutes();
+            //   let seconds = d.getUTCSeconds();
+            //   hours = (hours.toString().length == 1 ? '0' : '') + hours;
+            //   mins = (mins.toString().length == 1 ? '0' : '') + mins;
+            //   seconds = (seconds.toString().length == 1 ? '0' : '') + seconds;
+            //   return `${month}/${day}/${year} ${hours}:${mins}:${seconds}`;
+            // };
 
-            let date = getDate(new Date(trade.date))
+            let date = new Date(trade.date).toUTCString();
             return (
 
               <div className={"Row Small"} key={i}>

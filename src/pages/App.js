@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import * as Actions from './../actions/Actions'
-import ActionBinder from './../util/ActionBinder'
 import NPECheck from './../util/NPECheck'
-
 
 export default class App extends Component {
   constructor(props) {
@@ -17,13 +14,6 @@ export default class App extends Component {
     // Resize
     window.addEventListener('resize', this.checkMobile.bind(this));
     this.checkMobile();
-  }
-  getChildContext(){
-        let actions = [Actions];
-
-  	  	return {
-          actions: ActionBinder(actions, this)
-        };
   }
   checkMobile(e){
       let width = document.body.clientWidth;
