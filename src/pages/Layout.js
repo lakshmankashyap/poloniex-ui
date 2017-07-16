@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import * as Actions from './../actions/Actions'
 import ActionBinder from './../util/ActionBinder'
 import NPECheck from './../util/NPECheck'
-import Menu from './../components/Menu'
+
 
 export default class Layout extends Component {
   constructor(props) {

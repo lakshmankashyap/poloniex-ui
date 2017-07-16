@@ -22,11 +22,6 @@ export default class PolonienxBook {
   }
   remove(order) {
     let hash = this._getHash(order.type);
-    console.log(order.rate);
-    console.log(hash[order.rate]);
-	console.log(Object.keys(hash).length)
     delete hash[order.rate];
-    console.log(Object.keys(hash).length)
-    console.log('\n');
   }
 }

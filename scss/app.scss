@@ -9,27 +9,17 @@ $coverSlideTransition: all 0 linear;
 // Layout
 @import "pages/Layout";
 @import "pages/Home";
-@import "pages/About";
 
 
 // Partials
-@import "partials/Btn";
 @import "partials/Book";
-@import "partials/EmailSignUp";
-@import "partials/Menu";
-@import "partials/Footer";
-@import "partials/ProductsMenu";
-@import "partials/PullCommands";
-@import "partials/OneColumn";
-@import "partials/TwoColumn";
-@import "partials/ThreeColumn";
 
 html, body {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #FFFFFF;
+    font-family: 'monospace', sans-serif;
+    background-color: #15232c;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

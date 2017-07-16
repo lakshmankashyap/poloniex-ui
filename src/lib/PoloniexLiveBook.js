@@ -15,8 +15,8 @@ export default class PoloniexLiveBook {
     };
 
     config = {
-    	...defaults,
-    	...config
+      ...defaults,
+      ...config
     };
 
     this.currencyPair = config.currencyPair;
@@ -27,7 +27,8 @@ export default class PoloniexLiveBook {
     this._conn = null;
     this._sequence = -1;
     this._queue = [];
-    
+    this._tradeHistory = [];
+
     this._initialize();
   }
   _initialize() {
@@ -35,21 +36,13 @@ export default class PoloniexLiveBook {
     this._conn = null;
     this._sequence = -1;
     this._queue = [];
-    this._connect()
-      .then(() => this.getInitialOrderbook())
-      .then(() => this._processQueue())
-      .then(() => console.log('Queue Loadded -- Streaming Live'));
-
-  }
-  _processQueue() {
-    return new Promise((resolve) => {
-      this._queue = this._queue.filter(q => q.seq > this._sequence);
-      while (this._queue.length) {
-        let data = this._queue.shift();
-        this._handleMarketEvent(data);
-      }
-      resolve();
-    });
+    this._connect();
+    this._loadTradeHistory()
+      .then((res) => {
+        res.reverse()
+          .forEach((trade) => this._updateTradeHistory(trade));
+      })
+      .catch((err) => console.error(err));
   }
   _get(params = {}) {
     params = {
@@ -64,12 +57,10 @@ export default class PoloniexLiveBook {
       });
   }
   _connect() {
-    return new Promise((resolve) => {
-      this._conn = new WebSocket(this.websocketURL);
-      this._conn.onopen = e => this._onOpen(e.target);
-      this._conn.onmessage = e => this._onMessage(e, resolve);
-      this._conn.onclose = console.log;
-    });
+    this._conn = new WebSocket(this.websocketURL);
+    this._conn.onopen = e => this._onOpen(e.target);
+    this._conn.onmessage = e => this._onMessage(e);
+    this._conn.onclose = console.log;
   }
   _subscribe(session, channel) {
     session.send(JSON.stringify({
@@ -80,25 +71,22 @@ export default class PoloniexLiveBook {
   _onOpen(session) {
     this._subscribe(session, this.currencyPair);
   }
-  _onMessage(event, resolve) {
-    resolve();
+  _onMessage(event) {
     let data = JSON.parse(event.data);
     switch (data[0]) {
       case 176:
-          this._handleMarketEvent(data);
+        this._handleMarketEvent(data);
         break;
     }
-
   }
   _handleMarketEvent(data) {
     this._sequence = data[1];
-    // console.log('Processed seq: ' + this._sequence);
     data[2].forEach((arg) => {
       switch (arg[0]) {
-      	case 'i':
-      	let orderBook = arg[1].orderBook;
-	    this.book.setInitialState(orderBook[1], orderBook[0]);
-      	break;
+        case 'i':
+          let orderBook = arg[1].orderBook;
+          this.book.setInitialState(orderBook[1], orderBook[0]);
+          break;
 
         case 'o':
           this.book[arg[3] == '0.00000000' ? 'remove' : 'modify']({
@@ -108,34 +96,37 @@ export default class PoloniexLiveBook {
           });
           break;
 
-          // case "t":
-          //   args.push({
-          //     type: "newTrade",
-          //     data: {
-          //       tradeID: arg[1],
-          //       type: (arg[2] == 1 ? "buy" : "sell"),
-          //       rate: arg[3],
-          //       amount: arg[4],
-          //       total: fix(parseFloat(arg[3]) * parseFloat(arg[4])),
-          //       date: timestampToDate(arg[5], true)
-          //     }
-          //   });
-          //   break;
+        case "t":
+          console.log(arg);
+
+          this._updateTradeHistory({
+            tradeID: arg[1],
+            type: (arg[2] == 1 ? "buy" : "sell"),
+            rate: arg[3],
+            amount: arg[4],
+            total: parseFloat(arg[3]) * parseFloat(arg[4]),
+            date: arg[5] * 1000
+          });
+          console.log(this._tradeHistory.length);
+          break;
       }
     });
-    this.updateBook(this);	
-  }
-  getState(){
-  	return this.book.getState();
-  }
-  getInitialOrderbook(depth = 1000) {
-    let params = {
-      command: 'returnOrderBook',
-      depth: depth,
-    };
 
+    this.updateBook(this);
+  }
+  _loadTradeHistory() {
+    let params = {
+      command: 'returnTradeHistory',
+    };
     return this._get(params);
   }
-
-
+  _updateTradeHistory(newTrade) {
+    this._tradeHistory.unshift(newTrade);
+  }
+  getState() {
+    return this.book.getState();
+  }
+  getTradeHistory() {
+    return this._tradeHistory;
+  }
 }
