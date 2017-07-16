@@ -1,5 +1,5 @@
 # Poloniex UI
-A simple UI for viewing trades on the Poloniex exchange.
+A simple UI for viewing trade information on the Poloniex exchange.
 
 ### Getting started
 ```
