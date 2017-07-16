@@ -1,9 +1,9 @@
 import React, {
   Component
 } from 'react'
-import PoloniexLiveBook from './../lib/PoloniexLiveBook'
+import PoloniexClient from './../lib/PoloniexClient'
 
-export default function PoloniexLiveBookProvider(Component) {
+export default function PoloniexClientProvider(Component) {
   return class extends Component {
     constructor(props) {
       super(props);
@@ -13,7 +13,7 @@ export default function PoloniexLiveBookProvider(Component) {
     }
     componentDidMount() {
       this.setState({
-        liveBook: new PoloniexLiveBook({
+        liveBook: new PoloniexClient({
           updateBook: (book) => this.updateLiveBook(book)
         })
       });

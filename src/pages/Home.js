@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import PoloniexLiveBookProvider from './../components/PoloniexLiveBookProvider'
+import PoloniexClientProvider from './../components/PoloniexClientProvider'
 
 class HomePage extends Component{
 	constructor(props) {
@@ -136,7 +136,8 @@ class HomePage extends Component{
 	renderAskBook(asks){
 		return (
 			<div className="BookSide">
-				{[...Object.keys(asks)].sort().reverse().map((rate) => {
+				{[...Object.keys(asks)].sort((a, b) => parseFloat(a) > parseFloat(b) ? 1 : -1)
+          .reverse().map((rate) => {
 					let amount = asks[rate];
 					return (
 						<div className="Row Ask" key={rate}>
@@ -168,5 +169,5 @@ HomePage.childContextTypes = {
 	actions: PropTypes.object
 };
 
-export default PoloniexLiveBookProvider(HomePage);
+export default PoloniexClientProvider(HomePage);
 

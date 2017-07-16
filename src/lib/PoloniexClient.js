@@ -28,19 +28,23 @@ export default class PoloniexLiveBook {
     this._sequence = -1;
     this._queue = [];
     this._tradeHistory = [];
+    this.loading = false;
 
     this._initialize();
   }
   _initialize() {
+  	this.loading = true;
     this.book = new PolonienxBook();
     this._conn = null;
     this._sequence = -1;
     this._queue = [];
+    this._tradeHistory = [];
     this._connect();
     this._loadTradeHistory()
       .then((res) => {
         res.reverse()
           .forEach((trade) => this._updateTradeHistory(trade));
+		this.loading = false;         
       })
       .catch((err) => console.error(err));
   }
@@ -98,7 +102,6 @@ export default class PoloniexLiveBook {
 
         case "t":
           console.log(arg);
-
           this._updateTradeHistory({
             tradeID: arg[1],
             type: (arg[2] == 1 ? "buy" : "sell"),
@@ -107,7 +110,6 @@ export default class PoloniexLiveBook {
             total: parseFloat(arg[3]) * parseFloat(arg[4]),
             date: arg[5] * 1000
           });
-          console.log(this._tradeHistory.length);
           break;
       }
     });
