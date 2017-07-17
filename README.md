@@ -9,6 +9,7 @@ A simple UI for viewing trade information on the Poloniex exchange.
 $ docker pull samheutmaker/poloniex-ui:latest
 $ docker run -d -p 8080:8080 samheutmaker/poloniex-ui:latest
 ```
+Navigate to ```$(docker-machine ip):8080``` on mac or localhost:8080 on linux to view the UI.
 
 #### Build from source
 Requires Yarn, Make, and Node
