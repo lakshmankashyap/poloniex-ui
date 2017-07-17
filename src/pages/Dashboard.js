@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import PoloniexClientProvider from './../components/PoloniexClientProvider'
-import Select from 'react-select';
 
 class Dashboard extends Component{
 	constructor(props) {
