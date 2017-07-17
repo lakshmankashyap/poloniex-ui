@@ -10,6 +10,7 @@
     &.Small {
         font-size: 1.0rem;
         margin-bottom: 7px;
+        padding-left: 10px
     }
 
     .Value {
@@ -106,15 +107,16 @@
 
     .Book {
         position: relative;
-        width: 100%;
+        padding: 0 10px;
         overflow: scroll;
-        height: 90vh;
+        height: 88vh;
     }
 
     .TradeHistory {
         position: relative;
-        height: 90vh;
+        height: 88vh;
         overflow: scroll;
+        padding: 0 10px;
         flex: 1;
     }
 }

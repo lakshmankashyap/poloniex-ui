@@ -11,13 +11,57 @@
     @extend .Page;
 }
 
+nav {
+    position: relative;
+    height: 30px;
+    border-bottom: 1px solid white;
+    width: 100%;
+    font-size: 1.2rem;
+    color: white;
+    font-family: monospace, sans-serif;
+    overflow: hidden;
+
+    .Menu {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: column reverse;
+        flex: 1;
+
+        @media screen and (min-width: 960px) {
+            flex-direction: row;
+        }
+
+        .Title {
+            padding: 0px;
+            margin: 10 0 10px;
+
+            @media screen and (min-width: 960px) {
+                margin: 0px;
+                &:last-of-type {
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
+
+    .Toggle {
+        text-decoration: underline;
+
+
+        @media screen and (min-width: 960px) {
+            display: none;
+        }
+    }
+}
+
 .Content {
     position: relative;
     width: 96%;
     height: 100%;
     margin: 20px auto;
 
-    &.FlexRow {
+    .FlexContainer {
+        display: flex;
         flex-direction: column;
 
         @media screen and (min-width: 960px) {

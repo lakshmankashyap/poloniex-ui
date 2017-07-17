@@ -1,43 +1,100 @@
 import React, { Component, PropTypes } from 'react';
 import PoloniexClientProvider from './../components/PoloniexClientProvider'
+import Select from 'react-select';
 
 class Dashboard extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			scrollSet: false
+			scrollSet: false,
+      section: 'orders'
 		};
 	}
   componentWillReceiveProps(nextProps) {
     // Wait for book to load, set scroll position once
-    if (!this.state.scrollSet) {
-      let bookEl = document.getElementById('book');
-      let liveBook = nextProps.liveBook;
-      if (liveBook) {
-        let asksLength = Object.keys(liveBook.getState().asks).length;
-        if (bookEl && asksLength) {
-          setTimeout(() => {
-            bookEl.scrollTop = asksLength * 29.5;
-            this.setState({
-              scrollSet: true
-            });
+    // Scroll to spread when mobile changes
+    if (!this.state.scrollSet || nextProps.isMobile != this.props.isMobile) {
+      this.scrollToSpread(nextProps.liveBook);  
+    }
+  }
+  scrollToSpread(liveBook){
+    let bookEl = document.getElementById('book');
+    if(bookEl && liveBook) {
+      let asksLength = Object.keys(liveBook.getState().asks).length;
+      if (asksLength) {
+        setTimeout(() => {
+          bookEl.scrollTop = asksLength * 29.5;
+          this.setState({
+            scrollSet: true
           });
-        }
+        });
       }
     }
+  }
+  toggleSection(){
+    let section = this.state.section == 'orders' ?'trades' : 'orders'
+    this.setState({ section },
+      () => {
+        if(section == 'orders') this.scrollToSpread(this.props.liveBook);
+      });
   }
 	renderContent(){
 		let liveBook = this.props.liveBook;
 		if(liveBook) {
-			return (
-				<div className="Content FlexRow">
-					{this.renderBook(liveBook.getState())}
-					{this.renderTradeHistory(liveBook.getTradeHistory())}
-				</div>
-				
-			);
+
+      if(this.props.isMobile) {
+        return (
+          <div className="Content">
+            {this.renderNavigation()}
+            <div className="FlexContainer">
+              {this.state.section == 'orders' ? this.renderBook(liveBook.getState()) : this.renderTradeHistory(liveBook.getTradeHistory())}              
+            </div>
+          </div>  
+        );
+
+      } else {
+        return (
+          <div className="Content">
+            {this.renderNavigation()}
+            <div className="FlexContainer">
+              {this.renderBook(liveBook.getState())}
+              {this.renderTradeHistory(liveBook.getTradeHistory())}
+            </div>
+          </div>
+        );
+      }
 		}
 	}
+  renderNavigation() {
+    return (
+      <nav className='FlexRow' >
+        <div className="Menu" style={{flexWrap: 'colum-reverse' }}>
+          {(() => {
+            if(this.props.isMobile) {
+                return (
+                  <div className="Flex1 Title">
+                    {this.state.section == 'orders' ? 'Orders (ETH/REP)' : 'Trade History'}
+                  </div>
+                );
+            } else {
+              return [
+                <div className="Flex1 Title" key={0}>
+                  Orders (ETH/REP)
+                </div>,
+                <div className="Flex1 Title" key={1}>
+                  Trade History
+                </div>
+              ];
+            }
+
+          })()}
+        </div>
+        <div className="Toggle" onClick={() => this.toggleSection()}>
+          {this.state.section == 'orders' ? 'Show Trades' : 'Show Orders'}
+        </div>
+      </nav>  
+    );
+  }
 	renderTradeHistory(tradeHistory){
 		return (
       <div className="Wrapper">
@@ -50,22 +107,9 @@ class Dashboard extends Component{
 			<div className="TradeHistory">
 				  {[...tradeHistory].map((trade, i) => {
             let isBuy = trade.type == 'buy';
-            // let getDate = d => {
-            //   let month = d.getUTCMonth() + 1;
-            //   let day = d.getUTCDate();
-            //   let year = d.getUTCFullYear();
-            //   let hours = d.getHours();
-            //   let mins = d.getUTCMinutes();
-            //   let seconds = d.getUTCSeconds();
-            //   hours = (hours.toString().length == 1 ? '0' : '') + hours;
-            //   mins = (mins.toString().length == 1 ? '0' : '') + mins;
-            //   seconds = (seconds.toString().length == 1 ? '0' : '') + seconds;
-            //   return `${month}/${day}/${year} ${hours}:${mins}:${seconds}`;
-            // };
+            let date = trade.date
 
-            let date = new Date(trade.date).toUTCString();
             return (
-
               <div className={"Row Small"} key={i}>
                 <div className="Value">{date}</div> 
                 <div className={`Value ${isBuy ? 'Buy': 'Sell' }`}>{isBuy ? '↑' : '↓'}&nbsp;{trade.rate}</div> 
@@ -103,7 +147,8 @@ class Dashboard extends Component{
 	renderBidBook(bids){
 		return (
 			<div className="BookSide">
-				{[...Object.keys(bids)].map((rate) => {
+				{[...Object.keys(bids)].sort((a, b) => parseFloat(a) < parseFloat(b) ? 1 : -1)
+          .map((rate) => {
 					let amount = bids[rate];
 					return (
 						<div className="Row Bid" key={rate}>
@@ -135,8 +180,8 @@ class Dashboard extends Component{
 	renderAskBook(asks){
 		return (
 			<div className="BookSide">
-				{[...Object.keys(asks)].sort((a, b) => parseFloat(a) > parseFloat(b) ? 1 : -1)
-          .reverse().map((rate) => {
+				{[...Object.keys(asks)].sort((a, b) => parseFloat(a) < parseFloat(b) ? 1 : -1)
+          .map((rate) => {
 					let amount = asks[rate];
 					return (
 						<div className="Row Ask" key={rate}>

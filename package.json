@@ -17,7 +17,6 @@
     "url": "git+https://github.com/samheutmaker/poloniex-client.git"
   },
   "dependencies": {
-    "autobahn": "^17.5.2",
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.12.0",

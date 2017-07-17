@@ -3,7 +3,26 @@ import {
 } from './../util/Request';
 import jsonResponse from './../util/JsonResponse'
 import PolonienxBook from './../lib/PolonienxBook'
-import autobahn from 'autobahn'
+
+function pad(num,padding){
+	if (typeof num != "string")
+		num = num.toString();
+	
+	while (num.length < padding)
+		num = "0" + num;
+	
+	return num;
+}
+
+function timestampToDate(timestamp,combine){
+	var rDate = new Date(parseInt(timestamp)*1000);
+	var date = rDate.getUTCFullYear() + "-" + pad(rDate.getUTCMonth() + 1,2) + "-" + pad(rDate.getUTCDate(),2);
+	var time = pad(rDate.getUTCHours(),2) + ":" + pad(rDate.getMinutes(),2) + ":" + pad(rDate.getSeconds(),2);
+	if (combine === true)
+		return date + " " + time;
+	else
+		return {date: date,time: time};
+}
 
 export default class PoloniexLiveBook {
   constructor(config) {
@@ -101,14 +120,14 @@ export default class PoloniexLiveBook {
           break;
 
         case "t":
-          console.log(arg);
           this._updateTradeHistory({
             tradeID: arg[1],
             type: (arg[2] == 1 ? "buy" : "sell"),
             rate: arg[3],
             amount: arg[4],
             total: parseFloat(arg[3]) * parseFloat(arg[4]),
-            date: arg[5] * 1000
+            date: timestampToDate(arg[5], true)
+
           });
           break;
       }
