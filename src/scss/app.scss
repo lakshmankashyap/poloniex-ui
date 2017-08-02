@@ -1,0 +1,61 @@
+// Global Colors
+@import "global/colors.scss";
+
+// Pages
+@import "pages/PoloniexDashboard";
+
+// Partials
+@import "partials/Loader";
+@import "partials/Navigation";
+@import "partials/PoloniexBookView";
+@import "partials/PoloniexBookSpreadView";
+@import "partials/PoloniexTradeHistoryView";
+
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'monospace', sans-serif;
+    background-color: $bg;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.Content {
+    position: relative;
+    width: 96%;
+    height: 100%;
+    margin: 20px auto;
+
+    .FlexContainer {
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (min-width: 960px) {
+            flex-direction: row;
+        }
+    }
+
+    .FlexSpace {
+        flex: 0.1;
+    }
+}
+
+.FlexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.Flex1 {
+    flex: 1;
+}
+
+.Page {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+}
+

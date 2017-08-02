@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react';
-import NPECheck from './../util/NPECheck'
+import NPECheck from './lib/util/NPECheck'
 
+/* The top-level application component
+ * @extends Component
+ */
 export default class App extends Component {
   constructor(props) {
     super(props);
-    let isRoot = NPECheck(this.props, 'location/pathname', null) == '/';
     this.state = {
-      isRoot: isRoot,
       isMobile: false
     };
   }
+  // Listen for resize
   componentDidMount() {
-    // Resize
     window.addEventListener('resize', this.checkMobile.bind(this));
     this.checkMobile();
   }
@@ -38,7 +39,7 @@ export default class App extends Component {
   			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     		<meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet"/>
-        <link rel="stylesheet" href="/static/css/style.css"/>
+        <link rel="stylesheet" href="/public/css/style.css"/>
 		  </head>
   	);
   }
@@ -48,15 +49,9 @@ export default class App extends Component {
 				{this.renderHead()}
 				<body>
 					{React.cloneElement(this.props.children, {...this.state}, null)}
-		      <script src='/static/js/bundle.js' />
+		      <script src='/public/js/bundle.js' />
 				</body>
 			</html>
 		);
 	}
 }
-
-App.propTypes = {};
-
-App.childContextTypes = {
-  actions: PropTypes.object
-};

@@ -16,11 +16,11 @@ if (BUILD == 'style') {
   plugins.push(new ExtractTextPlugin('[name]', {
     allChunks: true
   }));
-  entry['static/css/style.css'] = path.resolve(__dirname, 'scss', 'app.scss');
+  entry['public/css/style.css'] = path.resolve(__dirname, 'src', 'scss', 'app.scss');
 
   output = {
-    filename: 'static/js/style.js',
-    path: 'static',
+    filename: 'public/js/style.js',
+    path: 'public',
     libraryTarget: 'umd'
   };
 }
@@ -30,8 +30,8 @@ if (BUILD == 'static') {
   entry['render'] = './render.js';
 
   output = {
-    filename: 'static/js/bundle.js',
-    path: 'static',
+    filename: 'public/js/bundle.js',
+    path: 'public',
     libraryTarget: 'umd'
   };
 }

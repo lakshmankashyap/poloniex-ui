@@ -1,3 +1,4 @@
+// Needs comment
 export default function actionBinder(actions, thisContext) {
   let combinedActions = Object.assign(...actions);
   let boundActions = {};

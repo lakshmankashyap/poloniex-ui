@@ -1,16 +1,3 @@
-.Page {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    min-height: 100%;
-    height: auto;
-}
-
-.Dashboard {
-    @extend .Page;
-}
-
 nav {
     position: relative;
     height: 30px;
@@ -37,6 +24,7 @@ nav {
 
             @media screen and (min-width: 960px) {
                 margin: 0px;
+
                 &:last-of-type {
                     padding-left: 20px;
                 }
@@ -47,38 +35,8 @@ nav {
     .Toggle {
         text-decoration: underline;
 
-
         @media screen and (min-width: 960px) {
             display: none;
         }
     }
-}
-
-.Content {
-    position: relative;
-    width: 96%;
-    height: 100%;
-    margin: 20px auto;
-
-    .FlexContainer {
-        display: flex;
-        flex-direction: column;
-
-        @media screen and (min-width: 960px) {
-            flex-direction: row;
-        }
-    }
-
-    .FlexSpace {
-        flex: 0.1;
-    }
-}
-
-.FlexRow {
-    display: flex;
-    flex-direction: row;
-}
-
-.Flex1 {
-    flex: 1;
 }

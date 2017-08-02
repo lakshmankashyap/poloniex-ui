@@ -1,0 +1,11 @@
+.PoloniexDashboard {
+    @extend .Page;
+
+    .SectionWrap {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        flex: 1;
+    }
+
+}

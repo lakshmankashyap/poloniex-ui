@@ -1,0 +1,62 @@
+.PoloniexTradeHistoryView {
+    .TradeHistory {
+        position: relative;
+        height: 88vh;
+        overflow: scroll;
+        padding: 0 10px;
+        flex: 1;
+    }
+}
+
+.Row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    font-family: monospace, sans-serif;
+    font-size: 1.0rem;
+    color: white;
+
+    &.Small {
+        font-size: 0.8rem;
+    }
+
+    &.Ask {
+        color: $red;
+    }
+
+    &.Bid {
+        color: $green;
+    }
+
+    .Value {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        &.Sell {
+            color: $red;
+        }
+
+        &.Buy {
+            color: $green;
+        }
+    }
+
+    .Latest {
+        background-color: darkkhaki;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        height: 20px;
+        width: 60px;
+        color: floralwhite;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-top: 0px;
+        position: absolute;
+        right: 0px;
+    }
+}
