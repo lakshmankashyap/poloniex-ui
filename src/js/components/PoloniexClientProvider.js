@@ -1,18 +1,27 @@
-import React, { Component } from 'react'
+import React, {
+  Component,
+  PropTypes
+} from 'react'
 import PoloniexClient from './../lib/poloniex/PoloniexClient'
 
 // Needs comments
-export default function PoloniexClientProvider(WrappedComponent) {
-  return class extends Component {
+export default function PoloniexClientProvider(ComponentToWrap) {
+  class ComponentWrapperClass extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        liveBook: null
+        poloniexClient: null,
+        poloniexError: null
+      };
+    }
+    getChildContext() {
+      return {
+        retryPoloniexClient: this.retryPoloniexClient.bind(this)
       };
     }
     componentDidMount() {
       this.setState({
-        liveBook: new PoloniexClient({
+        poloniexClient: new PoloniexClient({
           handleMessage: book => this.updateLiveBook(book),
           handleError: errorMsg => this.handleError(errorMsg)
         })
@@ -20,14 +29,29 @@ export default function PoloniexClientProvider(WrappedComponent) {
     }
     updateLiveBook(book) {
       this.setState({
-        liveBook: book
+        poloniexClient: book
       });
     }
     handleError(errorMsg) {
-      console.log(errorMsg);
+      this.setState({
+        poloniexError: errorMsg
+      });
+    }
+    retryPoloniexClient() {
+      this.setState({
+        poloniexError: null
+      }, () => {
+        this.state.poloniexClient.initialize();
+      });
     }
     render() {
-      return <WrappedComponent {...this.props } {...this.state } />
+      return <ComponentToWrap {...this.props } {...this.state } />
     }
   }
+
+  ComponentWrapperClass.childContextTypes = {
+    retryPoloniexClient: PropTypes.func
+  };
+
+  return ComponentWrapperClass;
 }

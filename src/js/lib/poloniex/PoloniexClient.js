@@ -50,7 +50,7 @@ export default class PoloniexClient {
     this._queue = [];
     this._tradeHistory = [];
 
-    this._initialize();
+    this.initialize();
   }
   /**
    * Initialize the client. This method sets all client properties
@@ -60,7 +60,7 @@ export default class PoloniexClient {
    * to reinitialize itself.
    * @returns {Undefined}
    */
-  _initialize() {
+  initialize() {
     this.loading = true;
     this.book = new PolonienxBook();
     this._conn = null;
@@ -71,14 +71,12 @@ export default class PoloniexClient {
     this._loadTradeHistory()
       .then(res => {
         if(!Array.isArray(res)) {
-          throw new Error(res.error);
+          throw new Error(res.error || 'Unexpected value encountered.');
           return;
-
         } 
 
         res.reverse().forEach(trade => this._updateTradeHistory(trade));
         this.loading = false;  
-        
       })
       .catch(err => this.handleError(err));
   }

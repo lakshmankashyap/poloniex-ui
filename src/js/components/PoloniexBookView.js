@@ -9,12 +9,12 @@ import PoloniexBookSideView from './PoloniexBookSideView'
 export default class PoloniexBookView extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    	scrollSet: false
-    };
+  }
+  componentDidMount() {
+    this.scrollToSpread(this.props.book);
   }
   componentWillReceiveProps(nextProps) {
-    if (!this.state.scrollSet || nextProps.isMobile != this.props.isMobile) {
+    if (nextProps.isMobile != this.props.isMobile) {
       this.scrollToSpread(nextProps.book);  
     }
   }
@@ -23,14 +23,7 @@ export default class PoloniexBookView extends Component {
     let bookEl = document.getElementById('book');
     if(bookEl && book) {
       let asksLength = Object.keys(book.asks).length;
-      if (asksLength) {
-        setTimeout(() => {
-          bookEl.scrollTop = asksLength * 29.5;
-          this.setState({
-            scrollSet: true
-          });
-        });
-      }
+      if (asksLength) bookEl.scrollTop = asksLength * 29.5;
     }
   }
   render() {
@@ -38,14 +31,14 @@ export default class PoloniexBookView extends Component {
     return (
       <div className="PoloniexBookView">
       	<div className="Legend">
-		  <div className="Value">Rate(ETH)</div> 
-	      <div className="Value">Amount(REP)</div>
-		</div>
+  		    <div className="Value">Rate(ETH)</div> 
+  	      <div className="Value">Amount(REP)</div>
+		    </div>
 	    <div className="Book" id="book">
-          <PoloniexBookSideView entries={book.asks} side="Ask"/>
-          <PoloniexBookSpreadView asks={book.asks} bids={book.bids} />
-          <PoloniexBookSideView entries={book.bids} side="Bid"/>
-		</div>
+        <PoloniexBookSideView entries={book.asks} side="Ask"/>
+        <PoloniexBookSpreadView asks={book.asks} bids={book.bids} />
+        <PoloniexBookSideView entries={book.bids} side="Bid"/>
+		  </div>
 	  </div>
     );
   }

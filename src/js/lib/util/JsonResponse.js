@@ -4,16 +4,16 @@
  * @returns {Promise}
  */
 export default function jsonResponse(response) {
+  let status = response.status;
+  if (200 <= status && status <= 299) {
     let json;
     try {
       json = response.json();
-    } catch (e) {
-      return new Error(e);
-    }
-
-    if (response.status >= 200 && response.status < 300) {
       return json;
-    } else {
-      return json.then(Promise.reject.bind(Promise));
+    } catch (e) {
+      return Promise.reject(e);
     }
   }
+
+  return Promise.reject(`${response.status}: ${response.statusText}`);
+}

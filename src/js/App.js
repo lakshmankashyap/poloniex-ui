@@ -18,14 +18,12 @@ export default class App extends Component {
   }
   checkMobile(e){
       let width = document.body.clientWidth;
-
       if(width >= 960 && this.state.isMobile) {
         this.setState({
           isMobile: false,
           
         })
       }
-
       if(width <= 960 && !this.state.isMobile) {
         this.setState({
           isMobile: true,
